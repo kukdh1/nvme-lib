@@ -4,34 +4,34 @@
 
 void binary_print(unsigned char *buf, int len, int width)
 {
-	int i, offset = 0, line_done = 0;
-	char ascii[width + 1];
+  int i, offset = 0, line_done = 0;
+  char ascii[width + 1];
 
-	printf("     ");
-	for (i = 0; i < width; i++) {
-		printf("%3x", i);
-	}
-	for (i = 0; i < len; i++) {
-		line_done = 0;
-		if (i % width == 0)
-			printf( "\n%04x:", offset);
-		printf( " %02x", buf[i]);
-		ascii[i % width] = (buf[i] >= '!' && buf[i] <= '~') ? buf[i] : '.';
-		if (((i + 1) % width) == 0) {
-			ascii[i % width + 1] = '\0';
-			printf( "  %.*s", width, ascii);
-			offset += width;
-			line_done = 1;
-		}
-	}
-	if (!line_done) {
-		unsigned b = width - (i % width);
-		ascii[i % width + 1] = '\0';
-		printf(" %*s  %.*s",
-				3 * b + 1, "",
-				width, ascii);
-	}
-	printf( "\n");
+  printf("     ");
+  for (i = 0; i < width; i++) {
+    printf("%3x", i);
+  }
+  for (i = 0; i < len; i++) {
+    line_done = 0;
+    if (i % width == 0)
+      printf( "\n%04x:", offset);
+    printf( " %02x", buf[i]);
+    ascii[i % width] = (buf[i] >= '!' && buf[i] <= '~') ? buf[i] : '.';
+    if (((i + 1) % width) == 0) {
+      ascii[i % width + 1] = '\0';
+      printf( "  %.*s", width, ascii);
+      offset += width;
+      line_done = 1;
+    }
+  }
+  if (!line_done) {
+    unsigned b = width - (i % width);
+    ascii[i % width + 1] = '\0';
+    printf(" %*s  %.*s",
+        3 * b + 1, "",
+        width, ascii);
+  }
+  printf( "\n");
 }
 
 int main(int argc, char *argv[]) {
