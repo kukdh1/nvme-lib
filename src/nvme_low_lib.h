@@ -152,6 +152,10 @@ enum {
   NVME_SC_DNR                       = 0x4000,
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Open the NVMe device.
  *
@@ -337,5 +341,9 @@ nvme_error nvme_get_data_pointer(nvme_data data, void **ptr);
  * @return Return string.
  */
 char *nvme_get_error_message(nvme_error err);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
