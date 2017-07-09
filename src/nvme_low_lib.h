@@ -223,6 +223,17 @@ nvme_error nvme_submit_admin(nvme_handle dev, nvme_cmd *cmd, nvme_metadata metad
 nvme_error nvme_submit_io(nvme_handle dev, nvme_cmd *cmd, nvme_metadata metadata, nvme_data data);
 
 /**
+ * @brief Submit rescan command to NVMe device.
+ *
+ * Submit rescan command to NVMe device.
+ * Driver will issue identify controller and scan namespaces
+ *
+ * @param dev Pointer to nvme_handle.
+ * @return Return nvme_error.
+ */
+nvme_error nvme_rescan(nvme_handle dev);
+
+/**
  * @brief Allocate metadata.
  *
  * Allocate metadata.

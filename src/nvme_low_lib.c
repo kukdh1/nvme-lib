@@ -40,6 +40,16 @@ nvme_error nvme_submit_io(nvme_handle dev, nvme_cmd *cmd, nvme_metadata metadata
   return nvme_submit_ioctl(dev, NVME_IOCTL_IO_CMD, cmd, metadata, data);
 }
 
+nvme_error nvme_rescan(nvme_handle dev) {
+  int err = ioctl((int)dev, NVME_IOCTL_RESCAN, NULL);
+
+  if (err < 0) {
+    err = errno;
+  }
+
+  return (nvme_error)err;
+}
+
 nvme_error nvme_alloc_metadata(nvme_metadata *metadata, uint32_t size) {
   nvme_passthru_data *ptr;
   int err = 0;
