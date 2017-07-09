@@ -245,6 +245,9 @@ nvme_error nvme_submit_ioctl(nvme_handle dev, int ioctl_cmd, nvme_cmd *cmd, nvme
   if (err < 0) {
     err = errno;
   }
+  else {
+    cmd->result = passthru_cmd.result;
+  }
 
   return (nvme_error)err;
 }
